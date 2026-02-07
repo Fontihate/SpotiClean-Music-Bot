@@ -1,13 +1,13 @@
-# 🧹 SpotiClean Music Bot
+# 🎧 SpotiClean: El Juez Musical Bot
 
 ![Python](https://img.shields.io/badge/python-3.12+-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)
 ![Spotify](https://img.shields.io/badge/Spotify-1DB954?style=for-the-badge&logo=spotify&logoColor=white)
-![Automation](https://img.shields.io/badge/Automation-Cleanup-BD93F9?style=for-the-badge&logo=probot&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![Scraper](https://img.shields.io/badge/Scraper-Cloudflare--Bypass-orange?style=for-the-badge&logo=google-cloud&logoColor=white)
 
 ---
 
-**SpotiClean Music Bot** es una herramienta de automatización diseñada para mantener tu biblioteca de Spotify impecable. Utiliza la API oficial de Spotify para organizar listas de reproducción, eliminar duplicados y gestionar el contenido de forma inteligente, ahorrándote horas de edición manual.
+**SpotiClean** no es solo un bot de información; es tu crítico musical personal en Telegram. Envíale un enlace de Spotify y el bot extraerá los metadatos, buscará una previsualización de audio en iTunes y, lo más importante, **¡juzgará tu gusto musical!** con una opinión basada en el género.
 
 ---
 
@@ -15,10 +15,10 @@
 
 | Herramienta | Función |
 |---|---|
-| **Python 3.12+** | Lenguaje principal del bot. |
-| **Spotipy** | Librería cliente para una integración fluida con la Web API de Spotify. |
-| **JSON/Env** | Gestión segura de credenciales y tokens de acceso. |
-| **OAuth 2.0** | Protocolo de autenticación para acceso seguro a la cuenta del usuario. |
+| **pyTelegramBotAPI** | Gestión de la interfaz del bot y comandos de Telegram. |
+| **Cloudscraper** | Bypass avanzado para extraer datos de Spotify sin ser bloqueado. |
+| **BeautifulSoup4** | Scraping y parseo de metadatos (títulos, artistas, portadas). |
+| **iTunes API** | Integración externa para obtener géneros y previews de audio (.mp3). |
 
 ---
 
@@ -26,14 +26,14 @@
 
 | Categoría | Descripción |
 |---|---|
-| **Deduplicación** | Escaneo automático de playlists para eliminar canciones repetidas. |
-| **Limpieza de Títulos** | Normalización de nombres (eliminación de "Remastered", "Live Version", etc.). |
-| **Filtros Avanzados** | Posibilidad de filtrar canciones por género, popularidad o fecha de lanzamiento. |
-| **Gestión de Playlists** | Creación y actualización automática de listas basadas en tus hábitos de escucha. |
+| **⚖️ El Juez Musical** | Sistema de opinión automática que reacciona según el género (Metal, Pop, Jazz, etc.). |
+| **🎵 Enriquecimiento** | No solo da texto; envía la portada del álbum y una nota de voz con la preview. |
+| **🌍 Multi-plataforma** | Genera botones automáticos para buscar la canción en YouTube o Songlink. |
+| **🛡️ Anti-Tracking** | Limpia automáticamente los parámetros de rastreo de los enlaces de Spotify. |
 
 ---
 
-## 📦 Instalación y Configuración
+## 📦 Instalación
 
 1. **Clona el repositorio:**
    ```bash
@@ -41,51 +41,43 @@
    cd SpotiClean-Music-Bot
    ```
 
-2. **Instala las dependencias:**
+2. **Instala las dependencias necesarias:**
    ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Configuración de API de Spotify:**
-   Crea una aplicación en el [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) y añade tus credenciales a un archivo `.env`:
-   ```env
-   SPOTIPY_CLIENT_ID='tu_client_id'
-   SPOTIPY_CLIENT_SECRET='tu_client_secret'
-   SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'
+   pip install pyTelegramBotAPI cloudscraper beautifulsoup4 requests
    ```
 
 ---
 
-## 📖 Modo de Uso
+## ⚙️ Configuración
 
-Una vez configuradas las credenciales, lanza el script para empezar la limpieza:
+Para que el bot funcione, debes editar el archivo principal (`main.py` o el nombre que tenga tu script) y añadir tu token de Telegram:
 
-```bash
-python main.py
+```python
+# 🔐 CONFIGURACIÓN
+TOKEN_TELEGRAM = "TU_TELEGRAM_TOKEN_AQUÍ"
 ```
 
-> [!NOTE]
-> La primera vez que lo ejecutes, se abrirá una ventana en tu navegador para que autorices al bot a gestionar tus listas de reproducción.
+---
+
+## 📖 Cómo Funciona
+
+1. Inicia el bot con `/start`.
+2. Pega cualquier enlace de canción o álbum de Spotify.
+3. El bot hará el scraping, consultará iTunes y te responderá con:
+   - La carátula del álbum.
+   - Datos del artista y género.
+   - **La opinión (a veces un poco dura) del bot.**
+   - Un archivo de audio para escuchar un avance.
+   - Botones directos a YouTube.
 
 ---
 
-## 📈 Roadmap de Desarrollo
+## 📈 Roadmap
 
-- [ ] Implementación de un **algoritmo de recomendación** basado en limpieza de géneros.
-- [ ] Creación de un **Dashboard web** con Flask para gestionar el bot visualmente.
-- [ ] Dockerización del proyecto para despliegue en la nube (AWS/Azure).
-- [ ] Programación de limpiezas automáticas semanales (Cron jobs).
-
----
-
-## 🤝 Contribuciones
-
-¿Quieres ayudar a que SpotiClean sea aún mejor?
-
-1. Haz un **Fork**.
-2. Crea una rama para tu mejora (`git checkout -b feature/MejoraSpotify`).
-3. Envía un **Pull Request**.
+- [ ] Integración de base de datos para recordar los gustos de cada usuario.
+- [ ] Comandos para buscar por texto en lugar de solo por enlace.
+- [ ] Modo "Crítico Agresivo" configurable.
 
 ---
 
-Hecho con 🎵 por [Fontihate](https://github.com/Fontihate)
+Hecho con 🤘 por [Fontihate](https://github.com/Fontihate)
